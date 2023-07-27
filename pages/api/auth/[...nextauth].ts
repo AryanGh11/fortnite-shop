@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth, {NextAuthOptions} from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/util/prisma";
@@ -33,16 +33,9 @@ export const authOptions: NextAuthOptions = {
     },
   },
   callbacks: {
-    async signIn(user, account, profile) {
-      if (
-        account.provider === "google" &&
-        profile.verified_email === true &&
-        profile.email.endsWith("@example.com")
-      ) {
-        return true;
-      } else {
-        return false;
-      }
+    async session({ session, token, user }) {
+      session.user = user;
+      return session;
     },
   },
 };
