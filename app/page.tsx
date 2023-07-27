@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -22,5 +23,7 @@ export default function Home() {
   }, []);
   
   console.log(aryan)
-  return <main className=""></main>;
+  return <main className="">
+    <Link href={"/auth/api/signin"}>Aryan</Link>
+  </main>;
 }
