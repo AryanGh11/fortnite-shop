@@ -6,8 +6,12 @@ import Stripe from "stripe";
 import Image from "next/image";
 import Link from "next/link";
 import DarkLightMode from "./DarkLightMode";
+import { AiOutlineShop } from "react-icons/ai";
+import { useCartStore } from "@/store";
+import Cart from "./Cart";
 
 export default function Nav({ user }: Session) {
+  const cartStore = useCartStore();
   return (
     <nav className="w-full flex justify-between items-center bg-base-100">
       {/* Website name */}
@@ -15,11 +19,22 @@ export default function Nav({ user }: Session) {
         <h1 className="font-bold">The Last 🔥</h1>
       </Link>
       <div className="flex items-center gap-6">
+        {/* Toggle the Cart */}
+        <button
+          onClick={() => {
+            cartStore.toggleCart();
+          }}
+        >
+          <AiOutlineShop className="w-8 h-8" />
+        </button>
         {/* Switch mode */}
         <DarkLightMode />
         {/* Check user session status */}
         {!user && (
-          <button className="btn btn-primary text-base-100" onClick={() => signIn()}>
+          <button
+            className="btn btn-primary text-base-100"
+            onClick={() => signIn()}
+          >
             Sign in
           </button>
         )}
@@ -38,7 +53,7 @@ export default function Nav({ user }: Session) {
               tabIndex={0}
             >
               <li>
-                <a>Arad Gooz</a>
+                <a>Orders (soon)</a>
               </li>
               <li>
                 <button onClick={() => signOut()}>Sign out</button>
@@ -47,6 +62,8 @@ export default function Nav({ user }: Session) {
           </div>
         )}
       </div>
+      {cartStore.isOpen && <Cart />}
+      {cartStore.error && <h1>{cartStore.error}</h1>}
     </nav>
   );
 }

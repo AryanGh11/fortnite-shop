@@ -8,6 +8,9 @@ module.exports = {
       },
       fontFamily: {
         inter: ["var(--font-inter)"]
+      },
+      colors: {
+        a_bit_darker: "rgba(0, 0, 0, .4)"
       }
     },
   },
@@ -30,7 +33,7 @@ module.exports = {
           "primary": "#F36090",
           "secondary": "#eeeeee",
           "accent": "#37cdbe",
-          "neutral": "#3d4451",
+          "neutral": "#eeeeee",
           "base-100": "#ffffff",
         }
       }]

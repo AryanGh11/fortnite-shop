@@ -11,8 +11,10 @@ export type CartStoreType = {
   removeProduct: (item: AddCartType) => void;
   paymentIntent: string;
   onCheckout: string;
+  error: string;
   setPaymentIntent: (val: string) => void;
   setCheckout: (val: string) => void;
+  setError: (val: string) => void;
 };
 
 export const useCartStore = create<CartStoreType>()(
@@ -22,6 +24,7 @@ export const useCartStore = create<CartStoreType>()(
       isOpen: false,
       paymentIntent: "",
       onCheckout: "cart",
+      error: "",
       toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
       clearCart: () => set((state) => ({ cart: [] })),
       addProduct: (item) =>
@@ -36,6 +39,7 @@ export const useCartStore = create<CartStoreType>()(
               }
               return cartItem;
             });
+            state.setError("error");
             return { cart: updatedCart };
           } else {
             return { cart: [...state.cart, { ...item, quantity: 1 }] };
@@ -65,6 +69,7 @@ export const useCartStore = create<CartStoreType>()(
         }),
       setPaymentIntent: (val) => set((state) => ({ paymentIntent: val })),
       setCheckout: (val) => set((state) => ({ onCheckout: val })),
+      setError: (val) => set((state) => ({ error: val })),
     }),
     { name: "cart-store" }
   )
@@ -84,3 +89,7 @@ export const useThemeStore = create<ThemeType>()(
     { name: "theme-store" }
   )
 );
+
+
+
+//error while an item added 2

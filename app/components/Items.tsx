@@ -1,32 +1,21 @@
 import { ItemsType } from "@/types/ItemsType";
 import Link from "next/link";
 import Image from "next/image";
-import { RiShoppingCart2Line } from "react-icons/ri";
 import { useCartStore } from "@/store";
-import { AddCartType } from "@/types/AddCartType";
 import { useState } from "react";
+import AddCart from "@/util/addToCart";
 
 export default function Items({
   displayName,
   mainId,
   displayAssets,
   quantity,
+  price,
 }: ItemsType) {
   const cartStore = useCartStore();
   const [added, setAdded] = useState(false);
   const icon = displayAssets[0].background;
-  const handleAdded = () => {
-    cartStore.addProduct({
-      mainId,
-      displayName,
-      displayAssets,
-      quantity,
-    } as AddCartType);
-    setAdded(true);
-    setTimeout(() => {
-      setAdded(false);
-    }, 500);
-  };
+
   return (
     <div className="flex flex-col" key={mainId}>
       <Link
@@ -41,24 +30,23 @@ export default function Items({
           width={1200}
           height={1200}
           className="w-full rounded-2xl"
+          priority
         />
       </Link>
 
       <div className="bg-base-100 p-4 mx-4 -my-4 relative -top-16 rounded-xl flex justify-between items-center">
-        <h1 className="font-bold text-md whitespace-nowrap overflow-hidden text-ellipsis">
-          {displayName}
-        </h1>
+        <div className="flex overflow-hidden flex-col">
+          <h1 className="font-bold text-md whitespace-nowrap overflow-hidden text-ellipsis">
+            {displayName}
+          </h1>
+          <h2 className="text-xs text-primary whitespace-nowrap overflow-hidden text-ellipsis">
+            {price.finalPrice + " V-bucks"}
+          </h2>
+        </div>
         {/* Cart Icon */}
-        <button
-          className="p-2 bg-red-500 rounded-lg"
-          disabled={added}
-          onClick={handleAdded}
-        >
-          {added && <h1>Adding...</h1>}
-          {!added && (
-            <RiShoppingCart2Line className="max-w-xs max-h-xs text-base-100" />
-          )}
-        </button>
+        <AddCart
+          {...{ displayName, mainId, displayAssets, quantity, price, icon }}
+        />
       </div>
     </div>
   );

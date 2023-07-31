@@ -26,10 +26,9 @@ export default function Home() {
         console.log(error);
       }
     };
-    console.log(items);
     fetchData();
   }, []);
-
+  console.log(items);
   return (
     <div className="grid grid-cols-fluid gap-x-8 pt-8">
       {items ? (

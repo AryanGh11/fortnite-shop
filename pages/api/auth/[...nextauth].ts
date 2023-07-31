@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/util/prisma";
 import Stripe from "stripe";
+import { custom } from 'openid-client';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as any,
@@ -38,6 +39,9 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-};
 
+};
+custom.setHttpOptionsDefaults({
+  timeout: 0,
+});
 export default NextAuth(authOptions);
