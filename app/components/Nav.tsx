@@ -9,6 +9,7 @@ import DarkLightMode from "./DarkLightMode";
 import { AiOutlineShop } from "react-icons/ai";
 import { useCartStore } from "@/store";
 import Cart from "./Cart";
+import ErrorMassage from "./ErrorMassage";
 
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
@@ -63,7 +64,7 @@ export default function Nav({ user }: Session) {
         )}
       </div>
       {cartStore.isOpen && <Cart />}
-      {cartStore.error && <h1>{cartStore.error}</h1>}
+      {cartStore.error && <ErrorMassage />}
     </nav>
   );
 }

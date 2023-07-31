@@ -34,7 +34,7 @@ export default function Items({
         />
       </Link>
 
-      <div className="bg-base-100 p-4 mx-4 -my-4 relative -top-16 rounded-xl flex justify-between items-center">
+      <div className="bg-base-100 p-4 mx-4 -my-8 relative -top-16 rounded-xl flex justify-between items-center">
         <div className="flex overflow-hidden flex-col">
           <h1 className="font-bold text-md whitespace-nowrap overflow-hidden text-ellipsis">
             {displayName}

@@ -2,7 +2,7 @@
 
 import { useCartStore } from "@/store";
 import { AddCartType } from "@/types/AddCartType";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { MdDone } from "react-icons/md";
 
@@ -16,28 +16,36 @@ export default function AddCart({
 }: AddCartType) {
   const [added, setAdded] = useState(false);
   const cartStore = useCartStore();
+  const existingItem = cartStore.cart.find((cartItem) => cartItem.mainId === mainId)
+  useEffect(() => {
+    if(existingItem?.quantity === 1) {
+      setAdded(true)
+    }
+  }, []) 
   const handdleAdded = () => {
-    cartStore.addProduct({
-      mainId,
-      displayName,
-      displayAssets,
-      quantity,
-      price,
-      icon,
-    } as AddCartType);
+    if (existingItem?.quantity! === 1) {
+      return cartStore.setError("Already in cart!")
+    }
+    else {
+      cartStore.addProduct({
+        mainId,
+        displayName,
+        displayAssets,
+        quantity,
+        price,
+        icon,
+      } as AddCartType);
+    }
     setAdded(true);
-    setTimeout(() => {
-      setAdded(false);
-    }, 500);
   };
   return (
     <button
-      className="p-2 bg-primary text-base-100 rounded-lg disabled:bg-base-100 disabled:text-primary"
+      className="btn btn-primary aspect-square rounded-lg pr-none"
       disabled={added}
       onClick={handdleAdded}
     >
-      {added && <MdDone className="max-w-xs max-h-xs" />}
-      {!added && <RiShoppingCart2Line className="max-w-xs max-h-xs" />}
+      {added && <MdDone className="w-full h-full text-primary" />}
+      {!added && <RiShoppingCart2Line className="w-full h-full text-base-100" />}
     </button>
   );
 }

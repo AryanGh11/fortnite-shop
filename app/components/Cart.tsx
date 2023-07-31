@@ -9,7 +9,7 @@ export default function Cart() {
   const cartStore = useCartStore();
   //Total Vbucks
   const totalVbucks = cartStore.cart.reduce((acc, item) => {
-    return acc + item.price!.finalPrice! * item?.quantity!;
+    return acc + item.price.finalPrice! * item.quantity!;
   }, 0);
   return (
     <motion.div
@@ -21,10 +21,10 @@ export default function Cart() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full lg:w-2/5 h-screen absolute top-0 right-0 py-8 px-4 bg-base-100"
+        className="w-full lg:w-2/5 h-screen absolute top-0 right-0 p-8 bg-base-100"
       >
         {cartStore.onCheckout === "cart" && (
-          <button onClick={() => cartStore.toggleCart()}>Back to Store</button>
+          <button className="pb-8" onClick={() => cartStore.toggleCart()}>Back to Store</button>
         )}
         {cartStore.onCheckout === "checkout" && (
           <button onClick={() => cartStore.setCheckout("cart")}>
@@ -34,7 +34,7 @@ export default function Cart() {
         {/* Cart's items */}
         {cartStore.cart.length > 0 && cartStore.onCheckout === "cart" && (
           <motion.div className="h-full flex flex-col justify-between pb-4">
-            <motion.div className="flex flex-col gap-4 pt-8 overflow-scroll no-scrollbar">
+            <motion.div className="flex flex-col gap-4 overflow-scroll no-scrollbar">
               {cartStore.cart.map((item) => (
                 <motion.div
                   layout
@@ -64,7 +64,7 @@ export default function Cart() {
                 </motion.div>
               ))}
             </motion.div>
-            <motion.div className="flex flex-col gap-12 items-center">
+            <motion.div className="flex flex-col gap-12 items-center pt-8">
               <h1 className="font-bold text-primary">{exchangePrice(totalVbucks) + " Tooman"}</h1>
               <motion.button className="btn btn-primary text-base-100 w-full h-20">
                 Pay now!

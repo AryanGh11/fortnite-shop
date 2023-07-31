@@ -89,7 +89,3 @@ export const useThemeStore = create<ThemeType>()(
     { name: "theme-store" }
   )
 );
-
-
-
-//error while an item added 2

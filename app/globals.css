@@ -18,6 +18,10 @@
   }
 }
 
+.btn {
+  @apply p-2.5
+}
+
 * {
   margin: 0;
   padding: 0;
