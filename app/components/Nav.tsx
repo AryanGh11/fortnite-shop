@@ -10,6 +10,7 @@ import { AiOutlineShop } from "react-icons/ai";
 import { useCartStore } from "@/store";
 import Cart from "./Cart";
 import ErrorMassage from "./ErrorMassage";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
@@ -20,14 +21,28 @@ export default function Nav({ user }: Session) {
         <h1 className="font-bold">The Last 🔥</h1>
       </Link>
       <div className="flex items-center gap-6">
-        {/* Toggle the Cart */}
-        <button
-          onClick={() => {
-            cartStore.toggleCart();
-          }}
-        >
-          <AiOutlineShop className="w-8 h-8" />
-        </button>
+        <ul>
+          {/* Toggle the Cart */}
+          <li
+            onClick={() => cartStore.toggleCart()}
+            className="flex items-center text-3xl relative cursor-pointer"
+          >
+            <AiOutlineShop className="w-8 h-8" />
+            <AnimatePresence>
+              {/* Cart lenght */}
+              {cartStore.cart.length > 0 && (
+                <motion.span
+                  animate={{ scale: 1 }}
+                  initial={{ scale: 0 }}
+                  exit={{ scale: 0 }}
+                  className="bg-primary text-base-100 text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex items-center justify-center"
+                >
+                  {cartStore.cart.length}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </li>
+        </ul>
         {/* Switch mode */}
         <DarkLightMode />
         {/* Check user session status */}
