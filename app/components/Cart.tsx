@@ -4,12 +4,16 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import emptyAnimation from "@/public/empty.json";
 import Image from "next/image";
 import exchangePrice from "@/util/exchangePrice";
+import { IoIosArrowBack } from "react-icons/io"
 
 export default function Cart() {
   const cartStore = useCartStore();
   //Total Vbucks
   const totalVbucks = cartStore.cart.reduce((acc, item) => {
-    return acc + item.price.finalPrice! * item.quantity!;
+    if (item.finalPrice) {
+      return acc + item.finalPrice! * item.quantity!;
+    }
+    return acc + item.price?.finalPrice! * item.quantity!;
   }, 0);
   return (
     <motion.div
@@ -24,7 +28,10 @@ export default function Cart() {
         className="w-full lg:w-2/5 h-screen absolute top-0 right-0 p-8 bg-base-100"
       >
         {cartStore.onCheckout === "cart" && (
-          <button className="pb-8" onClick={() => cartStore.toggleCart()}>Back to Store</button>
+          <button className="pb-8 flex items-center gap-2" onClick={() => cartStore.toggleCart()}>
+            <IoIosArrowBack />
+            Back to Store
+          </button>
         )}
         {cartStore.onCheckout === "checkout" && (
           <button onClick={() => cartStore.setCheckout("cart")}>
@@ -59,7 +66,8 @@ export default function Cart() {
                     </div>
                   </motion.div>
                   <h1 className="text-primary font-bold">
-                    {item.price.finalPrice}
+                    {item.finalPrice && item.finalPrice}
+                    {!item.finalPrice && item.price?.finalPrice}
                   </h1>
                 </motion.div>
               ))}

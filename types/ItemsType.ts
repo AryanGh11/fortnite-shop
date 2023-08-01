@@ -4,13 +4,20 @@ export type ItemsType = {
   displayAssets: DisplayAssestType;
   quantity?: number | 1;
   price: PriceType;
+  series?: SeriesType;
+  rarity?: SeriesType
+};
+
+type SeriesType = {
+  id: string;
+  name: string;
 };
 
 type DisplayAssestType = [
   {
-    background: string
+    background: string;
   }
-]
+];
 
 type PriceType = {
   finalPrice: number;

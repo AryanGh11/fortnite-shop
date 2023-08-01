@@ -5,6 +5,14 @@ export type AddCartType = {
   icon: string;
   quantity?: number | 1;
   price: PriceType;
+  finalPrice?: number;
+  series?: SeriesType;
+  rarity?: SeriesType
+};
+
+type SeriesType = {
+  id: string;
+  name: string;
 };
 
 type DisplayAssestType = [

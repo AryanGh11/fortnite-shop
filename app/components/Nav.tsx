@@ -14,7 +14,7 @@ import ErrorMassage from "./ErrorMassage";
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
   return (
-    <nav className="w-full flex justify-between items-center bg-base-100">
+    <nav className="w-full flex justify-between items-center bg-base-100 pb-8">
       {/* Website name */}
       <Link href={"/"}>
         <h1 className="font-bold">The Last 🔥</h1>

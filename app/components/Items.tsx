@@ -11,17 +11,21 @@ export default function Items({
   displayAssets,
   quantity,
   price,
+  series,
+  rarity
 }: ItemsType) {
   const cartStore = useCartStore();
   const [added, setAdded] = useState(false);
   const icon = displayAssets[0].background;
+  const rarityName = rarity?.name
+  const finalPrice = price?.finalPrice
 
   return (
     <div className="flex flex-col" key={mainId}>
       <Link
         href={{
           pathname: `/items/${mainId}`,
-          query: { displayName, mainId, icon },
+          query: { displayName, mainId, icon, finalPrice, rarityName },
         }}
       >
         <Image
@@ -37,15 +41,15 @@ export default function Items({
       <div className="bg-base-100 p-4 mx-4 -my-8 relative -top-16 rounded-xl flex justify-between items-center">
         <div className="flex overflow-hidden flex-col">
           <h1 className="font-bold text-md whitespace-nowrap overflow-hidden text-ellipsis">
-            {displayName}
+            {rarity?.name}
           </h1>
           <h2 className="text-xs text-primary whitespace-nowrap overflow-hidden text-ellipsis">
-            {price.finalPrice + " V-bucks"}
+            {price?.finalPrice + " V-bucks"}
           </h2>
         </div>
         {/* Cart Icon */}
         <AddCart
-          {...{ displayName, mainId, displayAssets, quantity, price, icon }}
+          {...{ displayName, mainId, displayAssets, quantity, icon, rarityName, price }}
         />
       </div>
     </div>

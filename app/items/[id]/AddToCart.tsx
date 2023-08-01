@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { MdDone } from "react-icons/md";
 
-export default function AddCart({
+export default function AddToCart({
   mainId,
   displayName,
   displayAssets,
   quantity,
+  finalPrice,
   price,
   icon,
 }: AddCartType) {
@@ -32,8 +33,9 @@ export default function AddCart({
         displayName,
         displayAssets,
         quantity,
-        price,
+        finalPrice,
         icon,
+        price
       } as AddCartType);
     }
     setAdded(true);
@@ -43,12 +45,18 @@ export default function AddCart({
   };
   return (
     <button
-      className="btn btn-primary aspect-square rounded-lg pr-none"
+      className="btn btn-primary aspect-square rounded-lg pr-none w-full disabled:bg-neutral"
       disabled={added}
       onClick={handdleAdded}
     >
-      {added && <MdDone className="w-full h-full text-primary" />}
-      {!added && <RiShoppingCart2Line className="w-full h-full text-base-100" />}
+      {added && <div className="flex items-center gap-2">
+        <MdDone className="w-6 h-6 text-primary" />
+        <h1 className="font-bold text-primary">Already in cart</h1>
+      </div>}
+      {!added && <div className="flex items-center gap-2">
+        <RiShoppingCart2Line className="w-6 h-6 text-base-100" />
+        <h1 className="font-bold">Add to cart</h1>
+      </div>}
     </button>
   );
 }

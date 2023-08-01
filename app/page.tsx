@@ -34,7 +34,7 @@ export default function Home() {
       {items ? (
         items.map((item: ItemsType) => <Items {...item} key={item.mainId} />)
       ) : (
-        <h1>Loading...</h1>
+        <h1>Something wrong...</h1>
       )}
     </div>
   );
