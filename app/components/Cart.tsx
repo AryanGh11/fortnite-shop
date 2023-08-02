@@ -5,6 +5,8 @@ import emptyAnimation from "@/public/empty.json";
 import Image from "next/image";
 import exchangePrice from "@/util/exchangePrice";
 import { IoIosArrowBack } from "react-icons/io"
+import { MdOutlineDeleteOutline } from "react-icons/md"
+import Checkout from "./Checkout";
 
 export default function Cart() {
   const cartStore = useCartStore();
@@ -65,16 +67,21 @@ export default function Cart() {
                       </h1>
                     </div>
                   </motion.div>
-                  <h1 className="text-primary font-bold">
-                    {item.finalPrice && item.finalPrice}
-                    {!item.finalPrice && item.price?.finalPrice}
-                  </h1>
+                  <motion.div className="flex items-center w-20 h-20 gap-2">
+                    <motion.div className="w-full" onClick={() => cartStore.removeProduct(item)}>
+                      <MdOutlineDeleteOutline className="w-full h-full text-primary" />
+                    </motion.div>
+                    <h1 className="text-primary font-bold">
+                      {item.finalPrice && item.finalPrice}
+                      {!item.finalPrice && item.price?.finalPrice}
+                    </h1>
+                  </motion.div>
                 </motion.div>
               ))}
             </motion.div>
-            <motion.div className="flex flex-col gap-12 items-center pt-8">
+            <motion.div className="flex flex-col gap-12 items-center py-8">
               <h1 className="font-bold text-primary">{exchangePrice(totalVbucks) + " Tooman"}</h1>
-              <motion.button className="btn btn-primary text-base-100 w-full h-20">
+              <motion.button onClick={() => cartStore.setCheckout("checkout")} className="btn btn-primary text-base-100 w-full h-20">
                 Pay now!
               </motion.button>
             </motion.div>
@@ -90,6 +97,8 @@ export default function Cart() {
           </AnimatePresence>
         )}
       </div>
+      Checkout forms
+      {cartStore.onCheckout === "checkout" && <Checkout />}
     </motion.div>
   );
 }

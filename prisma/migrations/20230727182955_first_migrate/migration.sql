@@ -28,7 +28,7 @@ CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
-    "unit_amount" DOUBLE PRECISION NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
     "image" TEXT,
     "quantity" DOUBLE PRECISION NOT NULL DEFAULT 0,
 

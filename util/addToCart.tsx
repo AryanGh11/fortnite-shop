@@ -42,13 +42,15 @@ export default function AddCart({
     // }, 500)
   };
   return (
-    <button
-      className="btn btn-primary aspect-square rounded-lg pr-none"
-      disabled={added}
-      onClick={handdleAdded}
-    >
-      {added && <MdDone className="w-full h-full text-primary" />}
-      {!added && <RiShoppingCart2Line className="w-full h-full text-base-100" />}
-    </button>
+    <div className="flex gap-2">
+      <button
+        className="btn btn-primary aspect-square rounded-lg pr-none"
+        disabled={added}
+        onClick={handdleAdded}
+      >
+        {added && <MdDone className="w-full h-full text-primary" />}
+        {!added && <RiShoppingCart2Line className="w-full h-full text-base-100" />}
+      </button>
+    </div>
   );
 }

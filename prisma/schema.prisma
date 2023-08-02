@@ -35,7 +35,7 @@ model Product {
   id          String  @id @default(cuid())
   name        String
   description String?
-  unit_amount Float
+  price       Float
   image       String?
   quantity    Float   @default(0)
   orders      Order[]
