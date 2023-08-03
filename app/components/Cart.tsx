@@ -7,6 +7,7 @@ import exchangePrice from "@/util/exchangePrice";
 import { IoIosArrowBack } from "react-icons/io"
 import { MdOutlineDeleteOutline } from "react-icons/md"
 import Checkout from "./Checkout";
+import OrderConfirmed from "./OrderConfirmed";
 
 export default function Cart() {
   const cartStore = useCartStore();
@@ -99,6 +100,7 @@ export default function Cart() {
         )}
         {/* Checkout forms */}
         {cartStore.onCheckout === "checkout" && <Checkout />}
+        {cartStore.onCheckout === "success" && <OrderConfirmed />}
       </div>
     </motion.div>
   );
