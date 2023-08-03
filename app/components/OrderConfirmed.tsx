@@ -19,7 +19,6 @@ export default function OrderConfirmed() {
       cartStore.setCheckout("cart");
     }, 1000);
     cartStore.toggleCart();
-    window.location.reload()
   };
   return (
     <motion.div

@@ -56,7 +56,7 @@ export default function CheckoutForm({
       <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
       <h1 className="py-4 text-sm font-bold">Total: {toomanPrice}</h1>
       <button
-        className={`py-2 mt-4 w-full btn btn-primary disabled:bg-gray-200`}
+        className={`py-2 mt-4 w-full btn btn-primary disabled:bg-base-100 disabled:text-primary`}
         id="submit"
         disabled={isLoading || !stripe || !elements}
       >
