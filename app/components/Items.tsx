@@ -21,7 +21,7 @@ export default function Items({
   const finalPrice = price?.finalPrice
 
   return (
-    <div className="flex flex-col" key={mainId}>
+    <div className="flex flex-col pt-10" key={mainId}>
       <Link
         href={{
           pathname: `/items/${mainId}`,

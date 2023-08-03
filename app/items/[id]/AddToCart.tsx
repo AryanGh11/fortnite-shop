@@ -55,7 +55,7 @@ export default function AddToCart({
         disabled={added}
         onClick={handdleAdded}
       >
-        {added && <div className="flex items-center w-4/5 gap-2">
+        {added && <div className="flex justify-center items-center w-4/5 gap-2">
           <MdDone className="w-6 h-6 text-primary" />
           <h1 className="font-bold text-primary">Already in cart</h1>
         </div>}

@@ -77,7 +77,7 @@ export default function ItemPage({ searchParams }: SearchParamTypes) {
           )}
         </ul>
       </div>
-      <div className="fixed bottom-8 left-8 right-8"><AddToCart {...searchParams} /></div>
+      <div className="fixed bottom-0 left-0 right-0 bg-base-100 p-8 pt-4"><AddToCart {...searchParams} /></div>
     </div>
   );
 }

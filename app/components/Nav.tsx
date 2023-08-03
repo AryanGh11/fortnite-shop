@@ -15,7 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
   return (
-    <nav className="w-full flex justify-between items-center bg-base-100 pb-8">
+    <nav className="w-full fixed p-8 lg:px-24 left-0 top-0 flex justify-between items-center bg-base-100 z-10">
       {/* Website name */}
       <Link href={"/"}>
         <h1 className="font-bold">The Last 🔥</h1>

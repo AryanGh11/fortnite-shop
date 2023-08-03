@@ -30,13 +30,14 @@ export default function Cart() {
         className="w-full lg:w-2/5 h-screen absolute top-0 right-0 p-8 bg-base-100"
       >
         {cartStore.onCheckout === "cart" && (
-          <button className="pb-8 flex items-center gap-2" onClick={() => cartStore.toggleCart()}>
+          <button className="py-4 flex items-center gap-2" onClick={() => cartStore.toggleCart()}>
             <IoIosArrowBack />
-            Back to Store
+            Back to store
           </button>
         )}
         {cartStore.onCheckout === "checkout" && (
-          <button onClick={() => cartStore.setCheckout("cart")}>
+          <button className="py-4 flex items-center gap-2" onClick={() => cartStore.setCheckout("cart")}>
+            <IoIosArrowBack />
             Back to cart
           </button>
         )}
@@ -69,7 +70,7 @@ export default function Cart() {
                   </motion.div>
                   <motion.div className="flex items-center w-20 h-20 gap-2">
                     <motion.div className="w-full" onClick={() => cartStore.removeProduct(item)}>
-                      <MdOutlineDeleteOutline className="w-full h-full text-primary" />
+                      <MdOutlineDeleteOutline className="w-full h-full text-primary cursor-pointer" />
                     </motion.div>
                     <h1 className="text-primary font-bold">
                       {item.finalPrice && item.finalPrice}
@@ -96,9 +97,9 @@ export default function Cart() {
             </motion.div>
           </AnimatePresence>
         )}
+        {/* Checkout forms */}
+        {cartStore.onCheckout === "checkout" && <Checkout />}
       </div>
-      Checkout forms
-      {cartStore.onCheckout === "checkout" && <Checkout />}
     </motion.div>
   );
 }
