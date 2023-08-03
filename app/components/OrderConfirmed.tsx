@@ -32,7 +32,7 @@ export default function OrderConfirmed() {
         <h2 className="text-sm my-4">Check your email for the receipt</h2>
         <Player src={animation} className="w-64 py-8 rounded-xl" />
         <div className="flex justify-center align-center gap-4">
-          <Link href={"/dashboard"} onClick={checkoutOrder}>
+          <Link href={"/orders"} onClick={checkoutOrder}>
             <button className="btn btn-primary">Check your order</button>
           </Link>
           <button className="btn btn-accent bg-base-100 text-primary" onClick={checkoutOrder}>
